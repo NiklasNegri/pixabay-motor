@@ -8,11 +8,14 @@ header {
     font-weight: bold;
     text-align: center;
     font-size: 24px;
+    margin-bottom: 150px;
 }
 
 h2 {
     font-weight: bold;
     font-size: 18px;
+    margin-bottom: 50px;
+
 }
 
 #results {
@@ -29,6 +32,15 @@ h2 {
     max-height: auto;
     outline: 1px solid blue;
     margin: 10px;
+}
+
+#page_control {
+    display: flex;
+    flex-direction: column;
+}
+
+#page_control li {
+
 }
 
 @media (max-width: 400px) {
