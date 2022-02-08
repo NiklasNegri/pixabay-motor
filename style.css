@@ -8,13 +8,11 @@
         "g h"
         "i j";
         max-width: 600px;
-
+        padding: 50px;
 }
 
 #results li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 4fr 1fr;
     outline: 1px solid blue;
-    list-style-type: none;
 }
