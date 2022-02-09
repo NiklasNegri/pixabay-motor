@@ -1,17 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding: 10px;
+    
+}
+
 body {
     font-family: sans-serif;
     font-weight: normal;
-    padding: 10px;
 }
 
 #banner {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(3, 2fr, 1fr, 1fr);
-
     font-weight: bold;
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 50px;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 #banner img {
@@ -23,7 +28,6 @@ body {
 h2 {
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 50px
 }
 
 #results {
