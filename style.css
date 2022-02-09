@@ -4,11 +4,20 @@ body {
     padding: 10px;
 }
 
-header {
+#banner {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr, 1fr, 1fr);
+
     font-weight: bold;
     text-align: center;
     font-size: 24px;
     margin-bottom: 150px;
+}
+
+#banner img {
+
+    max-width: 190px;
+    height: auto;
 }
 
 h2 {
@@ -37,10 +46,6 @@ h2 {
 #page_control {
     display: flex;
     flex-direction: column;
-}
-
-#page_control li {
-
 }
 
 @media (max-width: 400px) {
