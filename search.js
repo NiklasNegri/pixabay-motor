@@ -10,8 +10,17 @@ if its a photo
 */
 
 // function to get form value
+let searchButton = document.querySelector('button');
+let formInput = document.querySelector('input');
 
-function getUserFormInput() {
-    let formInput = document.getElementById("searchForm").TEXT_NODE;
-    alert('Form input =' + formInput);
+searchButton.onclick =  function(event) {
+    alert('test searchButton onclick');
 }
+
+searchButton.onclick = event => {
+    alert('test lambda onclick syntax');
+}
+
+searchButton.addEventListener('click', function(event) {
+    alert('test searchButton eventlistener')
+});
