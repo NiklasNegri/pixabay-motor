@@ -8,6 +8,18 @@ body {
     font-weight: normal;
 }
 
+h2 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#search-bar {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+}
+
 #banner {
     display: flex;
     font-weight: bold;
@@ -19,13 +31,8 @@ body {
 
 #banner img {
 
-    max-width: 190px;
+    max-width: 100px;
     height: auto;
-}
-
-h2 {
-    font-weight: bold;
-    font-size: 18px;
 }
 
 #results {
