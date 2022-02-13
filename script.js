@@ -1,22 +1,35 @@
 function CreateAPIstring() {
     return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-    searchForm.value + '+' + chosenColor.value + '&image_type=photo';
+    chosenColor.value + '+' + searchForm.value + '&image_type=photo';
 
     // needs an if statement if chosen color is empty for functionality
 }
 
+function countPages(totalHits) {
+    return totalHits / 10;
+}
+
 // fixa parameterar för att lägga in taggar, img och fotograf info
-function addPictures(imgUrl, tags, photographer) {
+function addPictures(imgId, imgUrl, tags, photographer) {
     let image = document.createElement('img');
     image.setAttribute("src", imgUrl);
-    let imageTags = document.createElement('label');
-    imageTags.textContext = tags;
-    let imagePhotographer = document.createElement('h3');
-    imagePhotographer.textContext = photographer;
+    let imageTags = document.createElement('p');
+    imageTags.innerText = tags;
+    let imagePhotographer = document.createElement('p');
+    imagePhotographer.innerText = photographer;
     
     let li = document.createElement('li');
-    li.appendChild(image, tags, photographer);
+    li.id = imgId;
+    li.appendChild(image);
+    li.appendChild(imageTags);
+    li.appendChild(imagePhotographer);
     results.append(li);
+}
+
+function deletePictures() {
+    for (let i = 0; i < 10; i++) {
+        results.remove(li[i]);
+    }
 }
 
 async function FetchJson() {
@@ -24,7 +37,7 @@ async function FetchJson() {
     const data = await response.json()
     for (var i = 0; i < 10; i++) {
         console.log(data.hits[i]);
-        addPictures(data.hits[i].previewURL, data.hits[i].tags, data.hits[i].user);
+        addPictures(i, data.hits[i].previewURL, data.hits[i].tags, data.hits[i].user);
     }
 }
 
