@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h1 id="headline">Pixabay Search Motor</h1>
-    <ul id="search-bars">
-        <li id="word">word</li>
-        <li id="color">color</li>
-        <li id="button">button</li>
-    </ul>
+
+    <form id="search-bars">
+        <input type="text" placeholder="Search for photos">
+        <select name="Color" id="colors">
+            <option value="Any Color">Any Color</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    
 
     <div id="pictures">
         <p>test</p>
@@ -23,8 +34,8 @@
     </div>
 
     <div id="bottom-buttons">
-        <h3>Previous Page</h3>
-        <h3>Next Page</h3>
+        <button type="previous-page">Previous Page</button>
+        <button type="next-page">Next Page</button>
     </div>
 </body>
 </html>
