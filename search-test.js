@@ -10,8 +10,8 @@ if its a photo
 */
 
 // function to get form value
-let searchButton = document.querySelector('button');
-let formInput = document.querySelector('input');
+let searchButton = document.getElementById('button').value;
+let formInput = document.getElementById('input').value;
 
 searchButton.onclick =  function(event) {
     alert('test searchButton onclick');
@@ -24,3 +24,4 @@ searchButton.onclick = event => {
 searchButton.addEventListener('click', function(event) {
     alert('test searchButton eventlistener')
 });
+

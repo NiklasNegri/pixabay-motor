@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=dev    ice-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>Pixabay Motor</title>
 </head>
 <body>
@@ -15,10 +16,14 @@
     </section>
     <section id="search-bar">
         <h2>What are you looking for today?</h2>
-        <form id="searchForm">
-            <input type="text" placeholder="Enter search text">
-            <button type ="submit">Search</button>
-        </form>
+        <form id="searchForm"></form>
+        <input type="text" placeholder="Enter search text">
+        <label for="colors">Choose a color</label>
+        <select name="colors">
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+        </select>
+        <button type ="searchBtn">Search</button>   
     </section>
     <section id="results">
         <li>
