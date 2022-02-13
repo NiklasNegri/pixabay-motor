@@ -24,6 +24,14 @@ function addPictures(imgId, imgUrl, tags, photographer) {
     li.appendChild(imageTags);
     li.appendChild(imagePhotographer);
     results.append(li);
+
+    let nextPageButton = document.createElement('button');
+    nextPageButton.type = 'button';
+    pageControl.append(nextPageButton);
+
+    nextPageButton.onclick = () => {
+        li.remove();
+    }
 }
 
 function deletePictures() {
@@ -48,6 +56,7 @@ let searchButton = document.querySelector('button');
 let searchForm = document.querySelector('input');
 let chosenColor = document.querySelector('select');
 let results = document.querySelector('#results')
+let pageControl = document.querySelector('#page_control');
 
 searchButton.onclick = event => {
     // get the json data from api by sending 
