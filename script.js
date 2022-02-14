@@ -16,6 +16,7 @@ function addPictures(imgUrl, tags, photographer, href) {
     imageTags.innerText = ('Tags: ' + tags + '\n\nUser: ' + photographer);
 
     let li = document.createElement('li');
+    let results = document.querySelector('#results')
     li.appendChild(image);
     li.appendChild(imageTags);
     results.append(li);
@@ -38,12 +39,11 @@ async function fetchJson() {
     const response = await fetch(CreateAPIstring());
     const data = await response.json()
     for (var i = 0; i < 10; i++) {
-        console.log(data.hits[i]);
+        // console.log(data.hits[i]);
         addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
     }
 }
 
-let results = document.querySelector('#results')
 let pageControl = document.querySelector('#page_control');
 
 let searchButton = document.querySelector('button');
