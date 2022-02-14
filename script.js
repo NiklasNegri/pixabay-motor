@@ -1,3 +1,6 @@
+// göra en klass med datan som en array? när man klickar search skapas ett objekt med tillhörande array
+// medans man går igenom sidor med 10 bilder var så .remove; ar man bilder man sett i arrayen redan
+
 function CreateAPIstring() {
     let searchForm = document.querySelector('input');
     let chosenColor = document.querySelector('select');
@@ -35,63 +38,37 @@ function deletePictures() {
     });
 }
 
-async function fetchJson(pageCount) {
+async function fetchJson() {
     const response = await fetch(CreateAPIstring());
     const data = await response.json();
-    for (var i = pageCount; i < pagecount*10; i++) {
+    for (var i = 0; i < 10; i++) {
         addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
+        data.hits[i].remove;
     }
-    
-    /* 
-    
-    if (pageCount === 1) {
-        const response = await fetch(CreateAPIstring());
-        const data = await response.json();
-        for (var i = 0; i < 10; i++) {
-            // console.log(data.hits[i]);
-            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
-        }
-        addPageControl(pageCount);
-    }
-    else if (pageCount > 1) {
-        const response = await fetch(CreateAPIstring());
-        const data = await response.json();
-        for (var i = (10 * pageCount); i < (10 * pageCount); i++) {
-            // console.log(data.hits[i]);
-            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
-        }
-        addPageControl(pageCount);
-    } 
-    */
 }
 
-function addNextPage(pageCount) {
+function addNextPage() {
     let pageControl = document.querySelector('#page_control');
 
-    if (pageCount === 1) {
-        let nextPageButton = document.createElement('button');
-        nextPageButton.innerText = 'Next Page';
-        pageControl.append(nextPageButton);
+    let nextPageButton = document.createElement('button');
+    nextPageButton.innerText = 'Next Page';
+    pageControl.append(nextPageButton);
 
-        nextPageButton.onclick = event => {
-            pageCount++;
-            deletePictures();
-            fetchJson(pageCount);
-            nextPageButton.remove();
-        }
+    nextPageButton.onclick = event => {
+        deletePictures();
+        nextPageButton.remove();
     }
 }
 
 function addLastPage() {
     
 }
+
 let searchButton = document.querySelector('button');
 
 searchButton.onclick = event => {
-    // reset pageCount for each new search
-    pageCount = 1;
     // deletes pics from old search first before adding new ones
     deletePictures();
     // get the json data from api by sending 
-    fetchJson(pageCount);
+    fetchJson();
 }
