@@ -36,6 +36,14 @@ function deletePictures() {
 }
 
 async function fetchJson(pageCount) {
+    const response = await fetch(CreateAPIstring());
+    const data = await response.json();
+    for (var i = pageCount; i < pagecount*10; i++) {
+        addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
+    }
+    
+    /* 
+    
     if (pageCount === 1) {
         const response = await fetch(CreateAPIstring());
         const data = await response.json();
@@ -54,9 +62,10 @@ async function fetchJson(pageCount) {
         }
         addPageControl(pageCount);
     } 
+    */
 }
 
-function addPageControl(pageCount) {
+function addNextPage(pageCount) {
     let pageControl = document.querySelector('#page_control');
 
     if (pageCount === 1) {
@@ -71,6 +80,10 @@ function addPageControl(pageCount) {
             nextPageButton.remove();
         }
     }
+}
+
+function addLastPage() {
+    
 }
 let searchButton = document.querySelector('button');
 
