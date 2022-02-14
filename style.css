@@ -41,10 +41,14 @@ h2 {
 
 #results {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #results li {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 #page_control {
@@ -57,33 +61,23 @@ h2 {
     list-style-type: none;
 }
 
-@media (max-width: 400px) {
-    #banner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+/* 
 
-    #results {
-        display: grid;
-        outline: 1px solid red;
-        grid-template:
-            "a b"
-            "c d"
-            "e f"
-            "g h"
-            "i j";
-            padding: 5px;
-            margin: 5px;
-    }
-    
-    #results li {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        justify-content: center;
-        justify-items: center;
-        outline: 1px solid blue;
-        max-width: 100%;
+responsivitet behöver fixas
+
+*/
+@media (max-width: 400px) {
+    li {
+        max-width: 250px;
         height: auto;
     }
 }
+ @media (max-width: 720px) {
+     #banner {
+         max-width: 550px;
+     }
+     li {
+         max-width: 550px;
+         height: auto;
+     }
+ }

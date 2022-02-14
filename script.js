@@ -13,7 +13,7 @@ function addPictures(imgUrl, tags, photographer, href) {
     image.setAttribute("src", imgUrl);
 
     let imageTags = document.createElement('p');
-    imageTags.innerText = ('Tags: ' + tags + '\nUser: ' + photographer);
+    imageTags.innerText = ('Tags: ' + tags + '\n\nUser: ' + photographer);
 
     let li = document.createElement('li');
     li.appendChild(image);
@@ -21,7 +21,7 @@ function addPictures(imgUrl, tags, photographer, href) {
     results.append(li);
 
     // klicka på bilden = gå till bildens pixabay url
-    // fixa historik så man kan gå tillbaka till tidigare sökning + sida?
+    // fixa historik så man kan gå tillbaka till tidigare sökning + sida ??
     li.onclick = event => {
         window.location.href = href;
     }
@@ -43,10 +43,10 @@ async function fetchJson() {
     }
 }
 
-let searchButton = document.querySelector('button');
 let results = document.querySelector('#results')
 let pageControl = document.querySelector('#page_control');
 
+let searchButton = document.querySelector('button');
 searchButton.onclick = event => {
     // deletes pics from old search first before adding new ones
     deletePictures();
