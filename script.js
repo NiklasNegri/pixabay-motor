@@ -35,21 +35,50 @@ function deletePictures() {
     });
 }
 
-async function fetchJson() {
-    const response = await fetch(CreateAPIstring());
-    const data = await response.json()
-    for (var i = 0; i < 10; i++) {
-        // console.log(data.hits[i]);
-        addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
+async function fetchJson(pageCount) {
+    if (pageCount === 1) {
+        const response = await fetch(CreateAPIstring());
+        const data = await response.json();
+        for (var i = 0; i < 10; i++) {
+            // console.log(data.hits[i]);
+            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
+        }
+        addPageControl(pageCount);
     }
+    else if (pageCount > 1) {
+        const response = await fetch(CreateAPIstring());
+        const data = await response.json();
+        for (var i = (10 * pageCount); i < (10 * pageCount); i++) {
+            // console.log(data.hits[i]);
+            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
+        }
+        addPageControl(pageCount);
+    } 
 }
 
-let pageControl = document.querySelector('#page_control');
+function addPageControl(pageCount) {
+    let pageControl = document.querySelector('#page_control');
 
+    if (pageCount === 1) {
+        let nextPageButton = document.createElement('button');
+        nextPageButton.innerText = 'Next Page';
+        pageControl.append(nextPageButton);
+
+        nextPageButton.onclick = event => {
+            pageCount++;
+            deletePictures();
+            fetchJson(pageCount);
+            nextPageButton.remove();
+        }
+    }
+}
 let searchButton = document.querySelector('button');
+
 searchButton.onclick = event => {
+    // reset pageCount for each new search
+    pageCount = 1;
     // deletes pics from old search first before adding new ones
     deletePictures();
     // get the json data from api by sending 
-    fetchJson();
+    fetchJson(pageCount);
 }

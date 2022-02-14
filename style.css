@@ -18,7 +18,7 @@ h2 {
     font-size: 18px;
 }
 
-#search-bar {
+.search-bar {
     display: grid;
     grid-template-rows: 1fr 1fr;
     justify-content: center;
