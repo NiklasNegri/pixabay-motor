@@ -10,7 +10,7 @@ function countPages(totalHits) {
 }
 
 // fixa parameterar för att lägga in taggar, img och fotograf info
-function addPictures(imgId, imgUrl, tags, photographer) {
+function addPictures(imgUrl, tags, photographer) {
     let image = document.createElement('img');
     image.setAttribute("src", imgUrl);
     let imageTags = document.createElement('p');
@@ -19,25 +19,17 @@ function addPictures(imgId, imgUrl, tags, photographer) {
     imagePhotographer.innerText = photographer;
     
     let li = document.createElement('li');
-    li.id = imgId;
     li.appendChild(image);
     li.appendChild(imageTags);
     li.appendChild(imagePhotographer);
     results.append(li);
-
-    let nextPageButton = document.createElement('button');
-    nextPageButton.type = 'button';
-    pageControl.append(nextPageButton);
-
-    nextPageButton.onclick = () => {
-        li.remove();
-    }
 }
 
 function deletePictures() {
-    for (let i = 0; i < 10; i++) {
-        results.remove(li[i]);
-    }
+    let liElements = document.querySelectorAll('li');
+    liElements.forEach(li => {
+        li.remove();
+    });
 }
 
 async function FetchJson() {
@@ -45,7 +37,7 @@ async function FetchJson() {
     const data = await response.json()
     for (var i = 0; i < 10; i++) {
         console.log(data.hits[i]);
-        addPictures(i, data.hits[i].previewURL, data.hits[i].tags, data.hits[i].user);
+        addPictures(data.hits[i].previewURL, data.hits[i].tags, data.hits[i].user);
     }
 }
 
@@ -59,6 +51,8 @@ let results = document.querySelector('#results')
 let pageControl = document.querySelector('#page_control');
 
 searchButton.onclick = event => {
+    // deletes pics from old search first before adding new ones
+    deletePictures();
     // get the json data from api by sending 
     FetchJson();
     // funktion för att visa alla bilder i listorna i html/dom
