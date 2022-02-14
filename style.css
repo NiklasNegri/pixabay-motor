@@ -3,6 +3,11 @@
     padding: 10px;
 }
 
+input {
+    max-height: 40px;
+    width: auto;
+}
+
 body {
     font-family: sans-serif;
     font-weight: normal;
@@ -30,23 +35,16 @@ h2 {
 }
 
 #banner img {
-
     max-width: 150px;
     height: auto;
 }
 
 #results {
     display: flex;
-    flex-wrap: wrap;
-    outline: 1px solid red;
 }
 
 #results li {
     display: flex;
-    justify-content: center;
-    justify-items: center;
-    outline: 1px solid blue;
-    margin: 10px;
 }
 
 #page_control {
