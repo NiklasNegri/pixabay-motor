@@ -31,6 +31,12 @@ function addPictures(imgUrl, tags, photographer, href) {
     }
 }
 
+function addPictureData(fetchedData) {
+    for (var i = 0; i < 10; i++) {
+        addPictures(fetchedData.hits[i].webformatURL, fetchedData.hits[i].tags, fetchedData.hits[i].user, fetchedData.hits[i].pageURL);
+    }
+}
+
 function deletePictures() {
     let liElements = document.querySelectorAll('li');
     liElements.forEach(li => {
@@ -39,12 +45,15 @@ function deletePictures() {
 }
 
 async function fetchJson() {
-    const response = await fetch(CreateAPIstring());
-    const data = await response.json();
-    for (var i = 0; i < 10; i++) {
-        addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user, data.hits[i].pageURL);
-        data.hits[i].remove;
-    }
+    let response = fetch(CreateAPIstring());
+    let data = await response.json()
+        .then (data => fetchedData.push(data));
+}
+
+function itterateArray(fetchedData) {
+    fetchedData.forEach(element => {
+        alert(element);
+    });
 }
 
 function addNextPage() {
@@ -56,19 +65,18 @@ function addNextPage() {
 
     nextPageButton.onclick = event => {
         deletePictures();
+        fetchJson();
         nextPageButton.remove();
     }
 }
 
-function addLastPage() {
-    
-}
-
 let searchButton = document.querySelector('button');
+let fetchedData = [];
 
 searchButton.onclick = event => {
     // deletes pics from old search first before adding new ones
     deletePictures();
     // get the json data from api by sending 
     fetchJson();
+
 }
