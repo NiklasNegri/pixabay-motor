@@ -5,34 +5,10 @@ function CreateAPIstring(pageCount) {
     let searchForm = document.querySelector('input');
     let chosenColor = document.querySelector('select');
 
-    if (pageCount <= 9) {
-        fetchPage = 1;
-    }
-    else if (pageCount <= 19) {
-        fetchPage = 2;
-    }
-    else if (pageCount <= 29) {
-        fetchPage = 3;
-    }
-    else if (pageCount <= 39) {
-        fetchPage = 4;
-    }
-    else if (pageCount <= 49) {
-        fetchPage = 5;
-    }
-    else {
-        prompt('Reached end of pictures! Try searching again to find different results!')
-    }
+    return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
+    chosenColor.value + '+' + searchForm.value + '&per_page=200';
 
-    if (chosenColor.value === 'Any Color') {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
-        searchForm.value + '&page=' + fetchPage + '&per_page=100';
-    }
-
-    else {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        chosenColor.value + '+' + searchForm.value + '&page=' + fetchPage + '&per_page=100';
-    }
+    // needs an if statement if chosen color is empty for functionality
 }
 
 function addPictures(imgUrl, tags, photographer, href) {
@@ -63,7 +39,7 @@ function deletePictures() {
 }
 
 async function fetchJson(pageCount) {
-    let response = await fetch(CreateAPIstring(pageCount));
+    let response = await fetch(CreateAPIstring());
     let data = await response.json()
 
     console.log(data);
@@ -82,7 +58,7 @@ pageCountDisplay.textContent = pageCount;
 
 searchButton.onclick = event => {
     pageCount = 0;
-    pageCountDisplay.textContent = pageCount;
+    pageCountDisplay.textContent = pageCount + 1;
     // deletes pics from old search first before adding new ones
     deletePictures();
     // get the json data from api by sending 
@@ -91,7 +67,7 @@ searchButton.onclick = event => {
 
 nextPageButton.onclick = event => {
     pageCount++;
-    pageCountDisplay.textContent = pageCount;
+    pageCountDisplay.textContent = pageCount + 1;
     deletePictures();
     fetchJson(pageCount);
 }
