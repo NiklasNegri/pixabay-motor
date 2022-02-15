@@ -31,12 +31,6 @@ function addPictures(imgUrl, tags, photographer, href) {
     }
 }
 
-function addPictureData(fetchedData) {
-    for (var i = 0; i < 10; i++) {
-        addPictures(fetchedData.hits[i].webformatURL, fetchedData.hits[i].tags, fetchedData.hits[i].user, fetchedData.hits[i].pageURL);
-    }
-}
-
 function deletePictures() {
     let liElements = document.querySelectorAll('li');
     liElements.forEach(li => {
@@ -44,39 +38,36 @@ function deletePictures() {
     });
 }
 
-async function fetchJson() {
-    let response = fetch(CreateAPIstring());
+async function fetchJson(pageCount) {
+    let response = await fetch(CreateAPIstring());
     let data = await response.json()
-        .then (data => fetchedData.push(data));
-}
 
-function itterateArray(fetchedData) {
-    fetchedData.forEach(element => {
-        alert(element);
-    });
-}
+    console.log(data);
 
-function addNextPage() {
-    let pageControl = document.querySelector('#page_control');
-
-    let nextPageButton = document.createElement('button');
-    nextPageButton.innerText = 'Next Page';
-    pageControl.append(nextPageButton);
-
-    nextPageButton.onclick = event => {
-        deletePictures();
-        fetchJson();
-        nextPageButton.remove();
+    let pictureId = pageCount * 10;
+    for (var i = 0; i < 10; i++) {
+        addPictures(data.hits[i+pictureId].webformatURL, data.hits[i+pictureId].tags, data.hits[i+pictureId].user, data.hits[i+pictureId].pageURL);
     }
 }
 
-let searchButton = document.querySelector('button');
-let fetchedData = [];
+let pageCountDisplay = document.querySelector(".page-count");
+let searchButton = document.querySelector(".search-button");
+let nextPageButton = document.querySelector(".next-page-button");
+let pageCount = 0;
+pageCountDisplay.textContent = pageCount;
 
 searchButton.onclick = event => {
+    pageCount = 0;
+    pageCountDisplay.textContent = pageCount;
     // deletes pics from old search first before adding new ones
     deletePictures();
     // get the json data from api by sending 
-    fetchJson();
+    fetchJson(pageCount);
+}
 
+nextPageButton.onclick = event => {
+    pageCount++;
+    pageCountDisplay.textContent = pageCount;
+    deletePictures();
+    fetchJson(pageCount);
 }
