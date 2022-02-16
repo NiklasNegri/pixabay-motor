@@ -9,9 +9,11 @@
 </head>
 <body>
     <h1 id="headline">Pixabay Search Motor</h1>
+    <h2 id="creators">Created by Niklas Negri and Oscar Fundberg</h2>
+    <h3 id="powered-by-pixabay">Powered by Pixabay</h3>
 
     <form id="search-bars">
-        <input type="text" placeholder="Search for photos">
+        <input type="text" placeholder="Search for photos" id="input">
         <select name="Color" id="colors">
             <option value="Any Color">Any Color</option>
             <option value="Red">Red</option>
@@ -21,21 +23,18 @@
             <option value="Black">Black</option>
             <option value="White">White</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" class="submit-button">Submit</button>
     </form>
     
 
-    <div id="pictures">
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-    </div>
+    <ul id="pictures">
+        
+    </ul>
 
     <div id="bottom-buttons">
-        <button type="previous-page">Previous Page</button>
-        <button type="next-page">Next Page</button>
+        <button type="click" class="previous-page">Previous Page</button>
+        <h2 id="page-number"></h2>
+        <button type="click" class="next-page">Next Page</button>
     </div>
 </body>
 </html>
