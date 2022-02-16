@@ -36,27 +36,30 @@ function deletePictures() {
 }
 
 async function fetchJson(pageCount) {
+    deletePictures();
     let response = await fetch(CreateAPIstring());
     let data = await response.json()
     
     console.log(data);
 
     let pictureId = pageCount * 10;
-    for (var i = 0; i < 10; i++) {
+    for (var i = 1; i < 10; i++) {
         addPictures(data.hits[i+pictureId].webformatURL, data.hits[i+pictureId].tags, data.hits[i+pictureId].user, data.hits[i+pictureId].pageURL);
     }
 }
 
 function setPageControlVisibility(pageCount) {
     if (pageCount === 0) {
-        nextPageButton.setAttribute("disabled", "disabled");
         previousPageButton.setAttribute("disabled", "disabled");
+        nextPageButton.setAttribute("disabled", "disabled");
     }
     else if (pageCount === 1) {
+        previousPageButton.setAttribute("disabled", "disabled");
         nextPageButton.removeAttribute("disabled");
     }
-    else {
+    else if (pageCount > 1) {
         previousPageButton.removeAttribute("disabled");
+        nextPageButton.removeAttribute("disabled");
     }
 }
 
@@ -65,24 +68,25 @@ let searchButton = document.querySelector(".search-button");
 let nextPageButton = document.querySelector(".next-page-button");
 let previousPageButton = document.querySelector(".previous-page-button")
 let pageCount = 0;
-pageCountDisplay.textContent = pageCount;
-
 setPageControlVisibility(pageCount);
 
 searchButton.onclick = event => {
+    pageCount = 0;
     pageCountDisplay.textContent = pageCount + 1;
-    // deletes pics from old search first before adding new ones
-    deletePictures();
-    // get the json data from api by sending 
     fetchJson(pageCount);
-    pageCount++;
-    setPageControlVisibility(pageCount);
+    setPageControlVisibility(pageCount+1);
 }
 
 nextPageButton.onclick = event => {
-    pageCountDisplay.textContent = pageCount + 1;
-    deletePictures();
-    fetchJson(pageCount);
     pageCount++;
-    setPageControlVisibility(pageCount);
+    fetchJson(pageCount);
+    pageCountDisplay.textContent = pageCount + 1;
+    setPageControlVisibility(pageCount+1);
+}
+
+previousPageButton.onclick = event => {
+    pageCount--;
+    fetchJson(pageCount);
+    pageCountDisplay.textContent = pageCount + 1;
+    setPageControlVisibility(pageCount+1);
 }
