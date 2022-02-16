@@ -36,12 +36,14 @@ function deletePictures() {
     liElements.forEach(li => {
         li.remove();
     });
+    isCurrentlySearching = false;
 }
 
 async function fetchJson(pageCount) {
     let response = await fetch(CreateAPIstring());
     let data = await response.json()
-
+    isCurrentlySearching = true;
+    setPageControlVisibility(isCurrentlySearching);
     console.log(data);
 
     let pictureId = pageCount * 10;
@@ -50,13 +52,31 @@ async function fetchJson(pageCount) {
     }
 }
 
+function setPageControlVisibility(isCurrentlySearching) {
+    if (!isCurrentlySearching) {
+        nextPageButton.setAttribute("disabled", "disabled");
+        previousPageButton.setAttribute("disabled", "disabled");
+        //pageCount.setAttribute = "hidden";
+    }
+    else {
+        nextPageButton.removeAttribute("disabled");
+        previousPageButton.removeAttribute("disabled");
+       // pageCount.removeAttribute("hidden");
+    }
+}
+
 let pageCountDisplay = document.querySelector(".page-count");
 let searchButton = document.querySelector(".search-button");
 let nextPageButton = document.querySelector(".next-page-button");
+let previousPageButton = document.querySelector(".previous-page-button")
 let pageCount = 0;
+let isCurrentlySearching = false;
 pageCountDisplay.textContent = pageCount;
 
+setPageControlVisibility(isCurrentlySearching);
+
 searchButton.onclick = event => {
+    isCurrentlySearching = true;
     pageCount = 0;
     pageCountDisplay.textContent = pageCount + 1;
     // deletes pics from old search first before adding new ones
