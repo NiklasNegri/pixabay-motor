@@ -1,16 +1,13 @@
-// göra en klass med datan som en array? när man klickar search skapas ett objekt med tillhörande array
-// medans man går igenom sidor med 10 bilder var så .remove; ar man bilder man sett i arrayen redan
-
 function CreateAPIstring(pageCount) {
     let searchForm = document.querySelector('input');
     let chosenColor = document.querySelector('select');
 
     return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
     chosenColor.value + '+' + searchForm.value + '&per_page=200';
-
-    // needs an if statement if chosen color is empty for functionality
 }
 
+// skapar objekt inuti li elementet i html
+// och lägger in data från bilderna där
 function addPictures(imgUrl, tags, photographer, href) {
     let image = document.createElement('img');
     image.setAttribute("src", imgUrl);
@@ -25,7 +22,6 @@ function addPictures(imgUrl, tags, photographer, href) {
     results.append(li);
 
     // klicka på bilden = gå till bildens pixabay url
-    // fixa historik så man kan gå tillbaka till tidigare sökning + sida ??
     li.onclick = event => {
         window.location.href = href;
     }
@@ -42,8 +38,7 @@ function deletePictures() {
 async function fetchJson(pageCount) {
     let response = await fetch(CreateAPIstring());
     let data = await response.json()
-    isCurrentlySearching = true;
-    setPageControlVisibility(isCurrentlySearching);
+    
     console.log(data);
 
     let pictureId = pageCount * 10;
@@ -52,16 +47,16 @@ async function fetchJson(pageCount) {
     }
 }
 
-function setPageControlVisibility(isCurrentlySearching) {
-    if (!isCurrentlySearching) {
+function setPageControlVisibility(pageCount) {
+    if (pageCount === 0) {
         nextPageButton.setAttribute("disabled", "disabled");
         previousPageButton.setAttribute("disabled", "disabled");
-        //pageCount.setAttribute = "hidden";
+    }
+    else if (pageCount === 1) {
+        nextPageButton.removeAttribute("disabled");
     }
     else {
-        nextPageButton.removeAttribute("disabled");
         previousPageButton.removeAttribute("disabled");
-       // pageCount.removeAttribute("hidden");
     }
 }
 
@@ -70,24 +65,24 @@ let searchButton = document.querySelector(".search-button");
 let nextPageButton = document.querySelector(".next-page-button");
 let previousPageButton = document.querySelector(".previous-page-button")
 let pageCount = 0;
-let isCurrentlySearching = false;
 pageCountDisplay.textContent = pageCount;
 
-setPageControlVisibility(isCurrentlySearching);
+setPageControlVisibility(pageCount);
 
 searchButton.onclick = event => {
-    isCurrentlySearching = true;
-    pageCount = 0;
     pageCountDisplay.textContent = pageCount + 1;
     // deletes pics from old search first before adding new ones
     deletePictures();
     // get the json data from api by sending 
     fetchJson(pageCount);
+    pageCount++;
+    setPageControlVisibility(pageCount);
 }
 
 nextPageButton.onclick = event => {
-    pageCount++;
     pageCountDisplay.textContent = pageCount + 1;
     deletePictures();
     fetchJson(pageCount);
+    pageCount++;
+    setPageControlVisibility(pageCount);
 }
