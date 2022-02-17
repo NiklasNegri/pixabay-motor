@@ -56,7 +56,7 @@ function addPictures(imgUrl, tags, photographer, href) {
     imageTags.innerText = ('Tags: ' + tags + '\n\nUser: ' + photographer);
 
     let li = document.createElement('li');
-    let results = document.querySelector('#results')
+    let results = document.querySelector(".results")
     li.appendChild(image);
     li.appendChild(imageTags);
     results.append(li);

@@ -21,11 +21,16 @@ h2 {
 .search-bar {
     display: grid;
     grid-template-rows: 1fr 1fr;
+    align-items: center;
     justify-content: center;
     justify-items: center;
 }
 
-#banner {
+.search-bar button {
+    margin-top: 20px;
+}
+
+.banner {
     display: flex;
     font-weight: bold;
 
@@ -34,31 +39,36 @@ h2 {
     align-items: flex-end;
 }
 
-#banner img {
+.powered-by-logo {
     max-width: 150px;
     height: auto;
 }
 
-#results {
+.results {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-#results li {
+.results li {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
-#page_control {
+.page-control {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#page_control ul {
+.page-control button {
+    width: 120px;
+}
+
+.footer {
     display: flex;
-    flex-direction: row;
-    list-style-type: none;
+    justify-content: center;
 }
 
 /* 
