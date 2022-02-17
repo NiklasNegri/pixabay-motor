@@ -1,22 +1,29 @@
-let pageCountDisplay = document.querySelector(".page-count");
-let searchButton = document.querySelector(".search-button");
-let nextPageButton = document.querySelector(".next-page-button");
-let previousPageButton = document.querySelector(".previous-page-button")
+const pageCountDisplay = document.querySelector(".page-count");
+const searchButton = document.querySelector(".search-button");
+const nextPageButton = document.querySelector(".next-page-button");
+const previousPageButton = document.querySelector(".previous-page-button")
+const searchForm = document.querySelector('input');
+const chosenColor = document.querySelector('select');
+let searchIdString = "";
+
 let pageCount = 0;
 setPageControlVisibility(pageCount);
 
-searchButton.onclick = event => {
-    pageCount = 0;
-    pageCountDisplay.textContent = pageCount + 1;
-    fetchJson(pageCount);
-    setPageControlVisibility(pageCount+1);
+searchButton.onclick = search => {
+    newSearch();
 }
 
 nextPageButton.onclick = event => {
-    pageCount++;
-    fetchJson(pageCount);
-    pageCountDisplay.textContent = pageCount + 1;
-    setPageControlVisibility(pageCount+1);
+    if (((searchForm.value + chosenColor.value) != searchIdString))  {
+        newSearch();
+    }
+    else if ((searchForm.value + chosenColor.value) === searchIdString) {
+        pageCount++;
+        fetchJson(pageCount);
+        pageCountDisplay.textContent = pageCount + 1;
+        setPageControlVisibility(pageCount+1);
+    }
+    
 }
 
 previousPageButton.onclick = event => {
@@ -26,10 +33,15 @@ previousPageButton.onclick = event => {
     setPageControlVisibility(pageCount+1);
 }
 
-function CreateAPIstring(pageCount) {
-    const searchForm = document.querySelector('input');
-    const chosenColor = document.querySelector('select');
+async function newSearch() {
+    pageCount = 0;
+    pageCountDisplay.textContent = pageCount + 1;
+    fetchJson(pageCount);
+    setPageControlVisibility(pageCount+1);
+    searchIdString = searchForm.value + chosenColor.value;
+}
 
+function CreateAPIstring(pageCount) {
     if (pageCount < 19) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
         chosenColor.value + '+' + searchForm.value + '&page=1&per_page=200';
