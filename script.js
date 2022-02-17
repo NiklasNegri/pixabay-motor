@@ -23,7 +23,6 @@ nextPageButton.onclick = event => {
         pageCountDisplay.textContent = pageCount + 1;
         setPageControlVisibility(pageCount+1);
     }
-    
 }
 
 previousPageButton.onclick = event => {
@@ -55,11 +54,11 @@ function CreateAPIstring(pageCount) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
         chosenColor.value + '+' + searchForm.value + '&page=2&per_page=200';
     }
-    else if (pageCount >= 39 && pageCount < 50) {
+    else if (pageCount >= 39 && pageCount < 60) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
         chosenColor.value + '+' + searchForm.value + '&page=3&per_page=200';
     }
-    else if (pageCount >= 50) {
+    else if (pageCount > 59) {
         // message user that they cant fetch more pictures
         // becuase api limitations are 3 pages with 200 pictures per page max
     }
@@ -101,7 +100,7 @@ async function fetchJson(pageCount) {
     else if (pageCount >= 19 && pageCount < 39) {
         arrayPos = (pageCount - 19) * 10;
     }
-    else if (pageCount >= 39 && pageCount < 50) {
+    else if (pageCount >= 39 && pageCount < 60) {
         arrayPos = (pageCount - 39) * 10; 
     }
 
@@ -119,8 +118,11 @@ function setPageControlVisibility(pageCount) {
         previousPageButton.setAttribute("disabled", "disabled");
         nextPageButton.removeAttribute("disabled");
     }
-    else if (pageCount > 1) {
+    else if (pageCount > 1 && pageCount < 59) {
         previousPageButton.removeAttribute("disabled");
         nextPageButton.removeAttribute("disabled");
+    }
+    else if (pageCount === 59) {
+        nextPageButton.setAttribute("disabled", "disabled");
     }
 }
