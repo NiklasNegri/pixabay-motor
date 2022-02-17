@@ -2,6 +2,7 @@ const pageCountDisplay = document.querySelector(".page-count");
 const searchButton = document.querySelector(".search-button");
 const nextPageButton = document.querySelector(".next-page-button");
 const previousPageButton = document.querySelector(".previous-page-button");
+let results = document.querySelector(".results");
 const searchForm = document.querySelector('input');
 const chosenColor = document.querySelector('select');
 let searchIdString = "";
@@ -68,7 +69,6 @@ function addPictures(imgUrl, tags, photographer, href) {
     imageTags.innerText = ('Tags: ' + tags + '\n\nUser: ' + photographer);
 
     let li = document.createElement('li');
-    let results = document.querySelector(".results")
     li.appendChild(image);
     li.appendChild(imageTags);
     results.append(li);
@@ -101,7 +101,17 @@ async function fetchJson(pageCount) {
     }
 
     for (var i = 0; i < 10; i++) {
-        addPictures(data.hits[i+arrayPos].webformatURL, data.hits[i+arrayPos].tags, data.hits[i+arrayPos].user, data.hits[i+arrayPos].pageURL);
+        if (data.hits[i+arrayPos] != undefined) {
+            addPictures(data.hits[i+arrayPos].webformatURL, data.hits[i+arrayPos].tags, data.hits[i+arrayPos].user, data.hits[i+arrayPos].pageURL);
+        }
+        else if (data.hits[i+arrayPos] === undefined && i === 9) {
+            nextPageButton.setAttribute("disabled", "disabled");
+            const endOfResults = document.createElement('p');
+            endOfResults.textContent = ('You have reached the end of the results');
+            const liElement = document.createElement('li');
+            liElement.append(endOfResults);
+            results.append(liElement);
+        } 
     }
 }
 
