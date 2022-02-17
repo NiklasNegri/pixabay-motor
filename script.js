@@ -27,11 +27,25 @@ previousPageButton.onclick = event => {
 }
 
 function CreateAPIstring(pageCount) {
-    let searchForm = document.querySelector('input');
-    let chosenColor = document.querySelector('select');
+    const searchForm = document.querySelector('input');
+    const chosenColor = document.querySelector('select');
 
-    return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-    chosenColor.value + '+' + searchForm.value + '&per_page=200';
+    if (pageCount < 19) {
+        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
+        chosenColor.value + '+' + searchForm.value + '&page=1&per_page=200';
+    }
+    else if (pageCount >= 19 && pageCount < 39) {
+        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
+        chosenColor.value + '+' + searchForm.value + '&page=2&per_page=200';
+    }
+    else if (pageCount >= 39 && pageCount < 50) {
+        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
+        chosenColor.value + '+' + searchForm.value + '&page=3&per_page=200';
+    }
+    else if (pageCount >= 50) {
+        // message user that they cant fetch more pictures
+        // becuase api limitations are 3 pages with 200 pictures per page max
+    }
 }
 
 function addPictures(imgUrl, tags, photographer, href) {
@@ -61,11 +75,20 @@ function deletePictures() {
 
 async function fetchJson(pageCount) {
     deletePictures();
-    let response = await fetch(CreateAPIstring());
+    let response = await fetch(CreateAPIstring(pageCount));
     let data = await response.json()
 
-    let arrayPos = pageCount * 10;
-    for (var i = 1; i < 10; i++) {
+    if (pageCount < 19) {
+        arrayPos = pageCount * 10;
+    }
+    else if (pageCount >= 19 && pageCount < 39) {
+        arrayPos = (pageCount - 19) * 10;
+    }
+    else if (pageCount >= 39 && pageCount < 50) {
+        arrayPos = (pageCount - 39) * 10; 
+    }
+
+    for (var i = 0; i < 10; i++) {
         addPictures(data.hits[i+arrayPos].webformatURL, data.hits[i+arrayPos].tags, data.hits[i+arrayPos].user, data.hits[i+arrayPos].pageURL);
     }
 }
