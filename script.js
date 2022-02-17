@@ -27,10 +27,15 @@ nextPageButton.onclick = event => {
 }
 
 previousPageButton.onclick = event => {
-    pageCount--;
-    fetchJson(pageCount);
-    pageCountDisplay.textContent = pageCount + 1;
-    setPageControlVisibility(pageCount+1);
+    if (((searchForm.value + chosenColor.value) != searchIdString))  {
+        newSearch();
+    }
+    else if ((searchForm.value + chosenColor.value) === searchIdString) {
+        pageCount--;
+        fetchJson(pageCount);
+        pageCountDisplay.textContent = pageCount + 1;
+        setPageControlVisibility(pageCount+1);
+    }
 }
 
 async function newSearch() {
