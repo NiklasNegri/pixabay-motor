@@ -1,7 +1,7 @@
 const pageCountDisplay = document.querySelector(".page-count");
 const searchButton = document.querySelector(".search-button");
 const nextPageButton = document.querySelector(".next-page-button");
-const previousPageButton = document.querySelector(".previous-page-button")
+const previousPageButton = document.querySelector(".previous-page-button");
 const searchForm = document.querySelector('input');
 const chosenColor = document.querySelector('select');
 let searchIdString = "";
@@ -57,10 +57,6 @@ function CreateAPIstring(pageCount) {
     else if (pageCount >= 39 && pageCount < 60) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
         chosenColor.value + '+' + searchForm.value + '&page=3&per_page=200';
-    }
-    else if (pageCount > 59) {
-        // message user that they cant fetch more pictures
-        // becuase api limitations are 3 pages with 200 pictures per page max
     }
 }
 
