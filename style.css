@@ -46,7 +46,7 @@ body {
 }
 
 @media (min-width: 1650px) {
-    .pictures {
+    .results {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         
@@ -58,7 +58,7 @@ body {
 }
 
 @media (max-width: 1650px ) {
-    .pictures {
+    .results {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         
@@ -70,7 +70,7 @@ body {
 }
 
 @media (max-width: 1250px) {
-    .pictures {
+    .results {
         display: grid;
         grid-template-columns: 1fr 1fr;
         
@@ -82,7 +82,7 @@ body {
 }
 
 @media (max-width: 850px) {
-    .pictures {
+    .results {
         display: grid;
         grid-template-columns: 1fr;
         
@@ -113,7 +113,7 @@ body {
 
 
 @media (max-width: 1650px) {
-    .pictures img{
+    .results img{
         width: 380px;
         height: 290px;
     
@@ -124,13 +124,13 @@ body {
         
         padding-bottom: 20px;
     
-        /* Used to center the pictures */
+        /* Used to center the results */
         padding-right: 40px;
         
     }
 }
 @media (min-width: 1650px) {
-    .pictures img{
+    .results img{
         width: 380px;
         height: 290px;
     

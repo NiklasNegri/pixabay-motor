@@ -1,4 +1,4 @@
-const pageCountDisplay = document.querySelector(".page-count");
+const pageCountDisplay = document.querySelector(".page-number");
 const searchButton = document.querySelector(".search-button");
 const nextPageButton = document.querySelector(".next-page-button");
 const previousPageButton = document.querySelector(".previous-page-button");
