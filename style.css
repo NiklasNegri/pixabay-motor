@@ -2,21 +2,21 @@ body {
     background-image: url('https://www.wptunnel.com/wp-content/uploads/2021/07/wptunnel-landscape-wallpaper-6.jpg');
 }
 
-#headline {
+.headline {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 60px;
     font-style: oblique;
     font-weight: bold;
     text-align: center;
 }
-#creators {
+.creators {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;
     font-style: oblique;
     font-weight: bold;
     text-align: center;
 }
-#powered-by-pixabay {
+.powered-by-pixabay {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 15px;
     color: gray;
@@ -26,7 +26,7 @@ body {
     padding-bottom: 25px;
 }
 
-#search-bars {
+.search-bars {
     display: grid;
     grid-template: 
     "a b c" / 3fr 2fr 1fr;
@@ -38,7 +38,7 @@ body {
     width: 600px;
 }
 
-#search-bars input, #search-bars select, #search-bars button{
+.search-bars input, .search-bars select, .search-bars button{
     font-size: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-style: oblique;
@@ -46,7 +46,7 @@ body {
 }
 
 @media (min-width: 1650px) {
-    #pictures {
+    .pictures {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         
@@ -58,7 +58,7 @@ body {
 }
 
 @media (max-width: 1650px ) {
-    #pictures {
+    .pictures {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         
@@ -70,7 +70,7 @@ body {
 }
 
 @media (max-width: 1250px) {
-    #pictures {
+    .pictures {
         display: grid;
         grid-template-columns: 1fr 1fr;
         
@@ -82,7 +82,7 @@ body {
 }
 
 @media (max-width: 850px) {
-    #pictures {
+    .pictures {
         display: grid;
         grid-template-columns: 1fr;
         
@@ -96,7 +96,7 @@ body {
         list-style-type: none;
     }
 
-    #search-bars {
+    .search-bars {
         display: grid;
         grid-template: 
         "a"
@@ -113,7 +113,7 @@ body {
 
 
 @media (max-width: 1650px) {
-    #pictures img{
+    .pictures img{
         width: 380px;
         height: 290px;
     
@@ -130,7 +130,7 @@ body {
     }
 }
 @media (min-width: 1650px) {
-    #pictures img{
+    .pictures img{
         width: 380px;
         height: 290px;
     
@@ -147,7 +147,7 @@ body {
 }
 
 
-#bottom-buttons {
+.bottom-buttons {
     
 
     display: grid;
@@ -159,14 +159,14 @@ body {
     text-align: center;
 }
 
-#bottom-buttons button{
+.bottom-buttons button{
     font-size: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-style: oblique;
     font-weight: bold;
 }
 
-#page-number {
+.page-number {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 35px;
     

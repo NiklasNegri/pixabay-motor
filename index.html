@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1 id="headline">Pixabay Search Motor</h1>
-    <h2 id="creators">Created by Niklas Negri and Oscar Fundberg</h2>
-    <h3 id="powered-by-pixabay">Powered by Pixabay</h3>
+    <h1 class="headline">Pixabay Search Motor</h1>
+    <h2 class="creators">Created by Niklas Negri and Oscar Fundberg</h2>
+    <h3 class="powered-by-pixabay">Powered by Pixabay</h3>
 
-    <form id="search-bars">
-        <input type="text" placeholder="Search for photos" id="input">
-        <select name="Color" id="colors">
-            <option value="anycolor">Any Color</option>
+    <form class="search-bars">
+        <input type="text" placeholder="Search for photos" class="input">
+        <select name="Color" class="select">
+            <option value="">Any Color</option>
             <option value="Red">Red</option>
             <option value="Green">Green</option>
             <option value="Blue">Blue</option>
@@ -23,16 +23,16 @@
             <option value="Black">Black</option>
             <option value="White">White</option>
         </select>
-        <button type="submit" class="submit-button">Search</button>
+        <button type="submit" class="search-button">Search</button>
     </form>
     
 
-    <ul id="pictures"></ul>
+    <ul class="results"></ul>
 
-    <div id="bottom-buttons">
-        <button type="click" class="previous-page">Previous Page</button>
-        <h2 id="page-number"></h2>
-        <button type="click" class="next-page">Next Page</button>
+    <div class="bottom-buttons">
+        <button type="click" class="previous-page-button">Previous Page</button>
+        <h2 class="page-number"></h2>
+        <button type="click" class="next-page-button">Next Page</button>
     </div>
 </body>
 </html>
