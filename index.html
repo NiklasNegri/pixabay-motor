@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <script src="script.js" defer></script>
+    <title>Pixabay Motor</title>
 </head>
 <body>
-    
+    <header class="banner">
+        <h1>Pixabay Motor</h1>
+        <h2> powered by</h2>
+        <img class="powered-by-logo" src="powered-by-pixabay-logo.svg">
+    </header>
+    </section>
+    <section class="search-bar">
+        <h2>What are you looking for today?</h2>
+        <input type="text" placeholder="Enter search text">
+        <label for="colors">Choose a color</label>
+        <select name="colors">
+            <option value="">Any Color</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="purple">Purple</option>
+            <option value="yellow">Yellow</option>
+        </select>
+        <button type="submit" class="search-button">Search</button>   
+    </section>
+    <section class="results">
+        <!-- this part is built with javascript-->
+    </section>
+    <section class="page-control">
+        <button type="click" class="previous-page-button">Previous Page</button>
+        <p class="page-count"></p>
+        <button type="click" class="next-page-button">Next Page</button>
+    </section>
+    <footer class="footer">
+        <small>copyright &copy;<a href="https://www.pixabay.com">Pixabay,</a>Niklas Negri och Oscar Fundberg</small>
+    </footer>
 </body>
 </html>

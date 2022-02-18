@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+input {
+    max-height: 40px;
+    width: auto;
+}
+
+body {
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.search-bar {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.search-bar button {
+    margin-top: 20px;
+}
+
+.banner {
+    display: flex;
+    font-weight: bold;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.powered-by-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.results li {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.page-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-control button {
+    width: 120px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* 
+
+responsivitet behöver fixas
+
+*/
+@media (max-width: 400px) {
+    li {
+        max-width: 250px;
+        height: auto;
+    }
+}
+ @media (max-width: 720px) {
+     #banner {
+         max-width: 550px;
+     }
+     li {
+         max-width: 550px;
+         height: auto;
+     }
+ }
