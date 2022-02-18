@@ -1,93 +1,174 @@
-* {
-    box-sizing: border-box;
-    padding: 10px;
-}
-
-input {
-    max-height: 40px;
-    width: auto;
-}
-
 body {
-    font-family: sans-serif;
-    font-weight: normal;
+    background-image: url('https://www.wptunnel.com/wp-content/uploads/2021/07/wptunnel-landscape-wallpaper-6.jpg');
 }
 
-h2 {
+#headline {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 60px;
+    font-style: oblique;
     font-weight: bold;
-    font-size: 18px;
+    text-align: center;
+}
+#creators {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-style: oblique;
+    font-weight: bold;
+    text-align: center;
+}
+#powered-by-pixabay {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    color: gray;
+    font-style: oblique;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 25px;
 }
 
-.search-bar {
+#search-bars {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
+    grid-template: 
+    "a b c" / 3fr 2fr 1fr;
+
+    list-style-type: none;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
 }
 
-.search-bar button {
-    margin-top: 20px;
-}
-
-.banner {
-    display: flex;
+#search-bars input, #search-bars select, #search-bars button{
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: oblique;
     font-weight: bold;
-
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
 }
 
-.powered-by-logo {
-    max-width: 150px;
-    height: auto;
-}
-
-.results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.results li {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.page-control {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.page-control button {
-    width: 120px;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-}
-
-/* 
-
-responsivitet behöver fixas
-
-*/
-@media (max-width: 400px) {
-    li {
-        max-width: 250px;
-        height: auto;
+@media (min-width: 1650px) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+        list-style-type: none;
     }
 }
- @media (max-width: 720px) {
-     #banner {
-         max-width: 550px;
-     }
-     li {
-         max-width: 550px;
-         height: auto;
-     }
- }
+
+@media (max-width: 1650px ) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+        list-style-type: none;
+    }
+}
+
+@media (max-width: 1250px) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+        list-style-type: none;
+    }
+}
+
+@media (max-width: 850px) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+
+        
+        
+
+        list-style-type: none;
+    }
+
+    #search-bars {
+        display: grid;
+        grid-template: 
+        "a"
+        "b"
+        "c" / 1fr;
+    
+        list-style-type: none;
+    
+        margin-left: auto;
+        margin-right: auto;
+        width: 380px;
+    }
+}
+
+
+@media (max-width: 1650px) {
+    #pictures img{
+        width: 380px;
+        height: 290px;
+    
+        display: block;
+    
+        margin-left: auto;
+        margin-right: auto;
+        
+        padding-bottom: 20px;
+    
+        /* Used to center the pictures */
+        padding-right: 40px;
+        
+    }
+}
+@media (min-width: 1650px) {
+    #pictures img{
+        width: 380px;
+        height: 290px;
+    
+        display: block;
+    
+        margin-left: auto;
+        margin-right: auto;
+        
+        padding-bottom: 20px;
+    
+        
+        
+    }
+}
+
+
+#bottom-buttons {
+    
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    width: 400px;
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#bottom-buttons button{
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+#page-number {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    
+    
+}
