@@ -61,7 +61,7 @@ function CreateAPIstring(pageCount) {
     }
 }
 
-function addPictures(imgUrl, tags, photographer, href) {
+function addPictures(imgUrl, tags, photographer) {
     let image = document.createElement('img');
     image.setAttribute("src", imgUrl);
 
@@ -72,10 +72,6 @@ function addPictures(imgUrl, tags, photographer, href) {
     li.appendChild(image);
     li.appendChild(imageTags);
     results.append(li);
-
-    li.onclick = event => {
-        window.location.href = href;
-    }
 }
 
 function deletePictures() {
@@ -102,7 +98,7 @@ async function fetchJson(pageCount) {
 
     for (var i = 0; i < 10; i++) {
         if (data.hits[i+arrayPos] != undefined) {
-            addPictures(data.hits[i+arrayPos].webformatURL, data.hits[i+arrayPos].tags, data.hits[i+arrayPos].user, data.hits[i+arrayPos].pageURL);
+            addPictures(data.hits[i+arrayPos].webformatURL, data.hits[i+arrayPos].tags, data.hits[i+arrayPos].user);
         }
         else if (data.hits[i+arrayPos] === undefined && i === 9) {
             nextPageButton.setAttribute("disabled", "disabled");
