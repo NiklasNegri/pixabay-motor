@@ -1,3 +1,7 @@
+body {
+    background-image: url('https://www.wptunnel.com/wp-content/uploads/2021/07/wptunnel-landscape-wallpaper-6.jpg');
+}
+
 #headline {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 60px;
@@ -41,23 +45,107 @@
     font-weight: bold;
 }
 
-
-#pictures {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    
-    margin-left: auto;
-    margin-right: auto;
-    
-    list-style-type: none;
+@media (min-width: 1650px) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+        list-style-type: none;
+    }
 }
 
-#pictures img{
-    width: 380px;
-    height: 290px;
-
-    padding: 5px
+@media (max-width: 1650px ) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+        list-style-type: none;
+    }
 }
+
+@media (max-width: 1250px) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+        list-style-type: none;
+    }
+}
+
+@media (max-width: 850px) {
+    #pictures {
+        display: grid;
+        grid-template-columns: 1fr;
+        
+        margin-left: auto;
+        margin-right: auto;
+        
+
+        
+        
+
+        list-style-type: none;
+    }
+
+    #search-bars {
+        display: grid;
+        grid-template: 
+        "a"
+        "b"
+        "c" / 1fr;
+    
+        list-style-type: none;
+    
+        margin-left: auto;
+        margin-right: auto;
+        width: 380px;
+    }
+}
+
+
+@media (max-width: 1650px) {
+    #pictures img{
+        width: 380px;
+        height: 290px;
+    
+        display: block;
+    
+        margin-left: auto;
+        margin-right: auto;
+        
+        padding-bottom: 20px;
+    
+        /* Used to center the pictures */
+        padding-right: 40px;
+        
+    }
+}
+@media (min-width: 1650px) {
+    #pictures img{
+        width: 380px;
+        height: 290px;
+    
+        display: block;
+    
+        margin-left: auto;
+        margin-right: auto;
+        
+        padding-bottom: 20px;
+    
+        
+        
+    }
+}
+
 
 #bottom-buttons {
     

@@ -1,9 +1,15 @@
 async function start(pageCount, input, color){
     pageNumber.textContent = pageCount + 1;
     
-    
+    let response;
 
-    let response = await fetch('https://pixabay.com/api/?key=25610090-f98b2ca9c4df3ac280852af10&q=' + color.value + '+' + input.value +  '&per_page=200');
+    if (color.value == "anycolor") {
+        response = await fetch('https://pixabay.com/api/?key=25610090-f98b2ca9c4df3ac280852af10&q=' + input.value +  '&per_page=200');
+    }
+    else {
+        response = await fetch('https://pixabay.com/api/?key=25610090-f98b2ca9c4df3ac280852af10&q=' + color.value + '+' + input.value +  '&per_page=200');
+    }
+
     let json = await response.json();
 
     console.log(json);
@@ -28,6 +34,9 @@ form.onsubmit = event => {
 
     searchInput = document.querySelector('input');
     searchColor = document.querySelector('select');
+
+    
+    
     
     pageCount = 0;
     start(pageCount, searchInput, searchColor);
@@ -57,12 +66,9 @@ let pageNumber = document.querySelector('#page-number');
 let pageCount = 0;
 let nextPageButton = document.querySelector('.next-page');
 let previousPageButton = document.querySelector('.previous-page');
-let newSearch = true;
 
 let searchInput;
 let searchColor;
-
-let firstSearch = true;
 
 nextPageButton.onclick = event => {
     pageCount++;
@@ -72,7 +78,11 @@ nextPageButton.onclick = event => {
 }
 
 previousPageButton.onclick = event => {
-    pageCount--;
-    removePictures()
 
-    start(pageCount, searchInput, searchColor);}
+    if (pageCount > 0) {
+        pageCount--;
+        removePictures()
+
+        start(pageCount, searchInput, searchColor);
+    }
+}
