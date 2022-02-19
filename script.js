@@ -37,9 +37,6 @@ previousPageButton.onclick = event => {
     setPageControlVisibility(pageCount+1);
 }
 
-async function newSearch() {
-    
-}
 function CreateAPIstring(pageCount) {
     if (pageCount < 19) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
@@ -98,6 +95,8 @@ async function fetchJson(pageCount) {
             nextPageButton.setAttribute("disabled", "disabled");
             const endOfResults = document.createElement('p');
             endOfResults.textContent = ('You have reached the end of the results');
+            endOfResults.style.color =  "white";
+            endOfResults.style.fontSize = "x-large";
             const liElement = document.createElement('li');
             liElement.append(endOfResults);
             results.append(liElement);
