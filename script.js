@@ -2,7 +2,7 @@ const pageCountDisplay = document.querySelector(".page-number");
 const searchButton = document.querySelector(".search-button");
 const nextPageButton = document.querySelector(".next-page-button");
 const previousPageButton = document.querySelector(".previous-page-button");
-let results = document.querySelector(".results");
+const results = document.querySelector(".results");
 const searchForm = document.querySelector('input');
 const chosenColor = document.querySelector('select');
 let searchIdString = "";
@@ -10,54 +10,48 @@ let searchIdString = "";
 let pageCount = 0;
 setPageControlVisibility(pageCount);
 
-searchButton.onclick = search => {
-    newSearch();
+searchButton.onclick = event => {
+    pageCount = 0;
+    pageCountDisplay.textContent = pageCount + 1;
+    if (chosenColor.value === "") {
+        searchIdString = searchForm.value;
+    }
+    else {
+        searchIdString = searchForm.value + '+' + chosenColor.value;
+    }
+    fetchJson(pageCount);
+    setPageControlVisibility(pageCount+1);
 }
 
 nextPageButton.onclick = event => {
-    if (((searchForm.value + chosenColor.value) != searchIdString))  {
-        newSearch();
-    }
-    else if ((searchForm.value + chosenColor.value) === searchIdString) {
-        pageCount++;
-        fetchJson(pageCount);
-        pageCountDisplay.textContent = pageCount + 1;
-        setPageControlVisibility(pageCount+1);
-    }
+    pageCount++;
+    fetchJson(pageCount);
+    pageCountDisplay.textContent = pageCount + 1;
+    setPageControlVisibility(pageCount+1);
 }
 
 previousPageButton.onclick = event => {
-    if (((searchForm.value + chosenColor.value) != searchIdString))  {
-        newSearch();
-    }
-    else if ((searchForm.value + chosenColor.value) === searchIdString) {
-        pageCount--;
-        fetchJson(pageCount);
-        pageCountDisplay.textContent = pageCount + 1;
-        setPageControlVisibility(pageCount+1);
-    }
+    pageCount--;
+    fetchJson(pageCount);
+    pageCountDisplay.textContent = pageCount + 1;
+    setPageControlVisibility(pageCount+1);
 }
 
 async function newSearch() {
-    pageCount = 0;
-    pageCountDisplay.textContent = pageCount + 1;
-    fetchJson(pageCount);
-    setPageControlVisibility(pageCount+1);
-    searchIdString = searchForm.value + chosenColor.value;
+    
 }
-
 function CreateAPIstring(pageCount) {
     if (pageCount < 19) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        chosenColor.value + '+' + searchForm.value + '&page=1&per_page=200';
+        searchIdString + '&page=1&per_page=200';
     }
     else if (pageCount >= 19 && pageCount < 39) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        chosenColor.value + '+' + searchForm.value + '&page=2&per_page=200';
+        searchIdString + '&page=2&per_page=200';
     }
     else if (pageCount >= 39 && pageCount < 60) {
         return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        chosenColor.value + '+' + searchForm.value + '&page=3&per_page=200';
+        searchIdString + '&page=3&per_page=200';
     }
 }
 
