@@ -91,7 +91,7 @@ body {
         list-style-type: none;
     }
 
-    .search-bars {
+    .search-bar {
         display: grid;
         grid-template: 
         "a"
