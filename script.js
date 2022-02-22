@@ -5,44 +5,59 @@ const previousPageButton = document.querySelector(".previous-page-button");
 const results = document.querySelector(".results");
 const searchForm = document.querySelector('input');
 const chosenColor = document.querySelector('select');
-
-let searchIdString = "";
 previousPageButton.setAttribute("disabled", "disabled");
 nextPageButton.setAttribute("disabled", "disabled");
 
 searchButton.onclick = event => {
-    deletePictures();
     pageCount = 1;
-    pageCountDisplay.textContent = pageCount;
     if (chosenColor.value === "") {
         searchIdString = searchForm.value;
     }
     else {
         searchIdString = searchForm.value + '&colors=' + chosenColor.value;
     }
-    fetchJson(pageCount);
-    setPageControlVisibility(pageCount);
+    start(pageCount);
 }
 
 nextPageButton.onclick = event => {
-    deletePictures();
     pageCount++;
-    fetchJson(pageCount);
-    pageCountDisplay.textContent = pageCount;
-    setPageControlVisibility(pageCount);
+    start(pageCount);
 }
 
 previousPageButton.onclick = event => {
-    deletePictures();
     pageCount--;
+    start(pageCount);
+}
+
+async function start(pageCount) {
+    deletePictures();
     fetchJson(pageCount);
     pageCountDisplay.textContent = pageCount;
     setPageControlVisibility(pageCount);
 }
 
-function CreateAPIstring(pageCount) {
-    return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
-        searchIdString + '&page=' + pageCount + '&per_page=10';
+async function fetchJson(pageCount) {
+    const query = 'https://pixabay.com/api/?key=';
+    const apiKey = '25628261-88fe3cd1e6d3db0e5352b21b2';
+    const fullQuery = query + apiKey + '&q=' + searchIdString + '&page=' + pageCount + '&per_page=10';
+    let response = await fetch(fullQuery);
+    let data = await response.json();
+
+    for (var i = 0; i < 10; i++) {
+        if (data.hits[i] != undefined) {
+            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user);
+        }
+        else if (data.hits[i] === undefined && i === 9) {
+            nextPageButton.setAttribute("disabled", "disabled");
+            const endOfResults = document.createElement('p');
+            endOfResults.textContent = ('You have reached the end of the results');
+            endOfResults.style.color = "white";
+            endOfResults.style.fontSize = "x-large";
+            const liElement = document.createElement('li');
+            liElement.append(endOfResults);
+            results.append(liElement);
+        }
+    }
 }
 
 function addPictures(imgUrl, tags, photographer) {
@@ -76,28 +91,5 @@ function setPageControlVisibility(pageCount) {
     }
     else if (pageCount === 51) {
         nextPageButton.setAttribute("disabled", "disabled");
-    }
-}
-
-async function fetchJson(pageCount) {
-    let response = await fetch(CreateAPIstring(pageCount));
-    let data = await response.json();
-
-    console.log(data);
-
-    for (var i = 0; i < 10; i++) {
-        if (data.hits[i] != undefined) {
-            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user);
-        }
-        else if (data.hits[i] === undefined && i === 9) {
-            nextPageButton.setAttribute("disabled", "disabled");
-            const endOfResults = document.createElement('p');
-            endOfResults.textContent = ('You have reached the end of the results');
-            endOfResults.style.color = "white";
-            endOfResults.style.fontSize = "x-large";
-            const liElement = document.createElement('li');
-            liElement.append(endOfResults);
-            results.append(liElement);
-        }
     }
 }
