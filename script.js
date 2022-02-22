@@ -5,14 +5,15 @@ const previousPageButton = document.querySelector(".previous-page-button");
 const results = document.querySelector(".results");
 const searchForm = document.querySelector('input');
 const chosenColor = document.querySelector('select');
-let searchIdString = "";
 
-let pageCount = 0;
-setPageControlVisibility(pageCount);
+let searchIdString = "";
+previousPageButton.setAttribute("disabled", "disabled");
+nextPageButton.setAttribute("disabled", "disabled");
 
 searchButton.onclick = event => {
-    pageCount = 0;
-    pageCountDisplay.textContent = pageCount + 1;
+    deletePictures();
+    pageCount = 1;
+    pageCountDisplay.textContent = pageCount;
     if (chosenColor.value === "") {
         searchIdString = searchForm.value;
     }
@@ -20,36 +21,28 @@ searchButton.onclick = event => {
         searchIdString = searchForm.value + '&colors=' + chosenColor.value;
     }
     fetchJson(pageCount);
-    setPageControlVisibility(pageCount + 1);
+    setPageControlVisibility(pageCount);
 }
 
 nextPageButton.onclick = event => {
+    deletePictures();
     pageCount++;
     fetchJson(pageCount);
-    pageCountDisplay.textContent = pageCount + 1;
-    setPageControlVisibility(pageCount + 1);
+    pageCountDisplay.textContent = pageCount;
+    setPageControlVisibility(pageCount);
 }
 
 previousPageButton.onclick = event => {
+    deletePictures();
     pageCount--;
     fetchJson(pageCount);
-    pageCountDisplay.textContent = pageCount + 1;
-    setPageControlVisibility(pageCount + 1);
+    pageCountDisplay.textContent = pageCount;
+    setPageControlVisibility(pageCount);
 }
 
 function CreateAPIstring(pageCount) {
-    if (pageCount < 19) {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
-            searchIdString + '&page=1&per_page=200';
-    }
-    else if (pageCount >= 19 && pageCount < 39) {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
-            searchIdString + '&page=2&per_page=200';
-    }
-    else if (pageCount >= 39 && pageCount < 60) {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
-            searchIdString + '&page=3&per_page=200';
-    }
+    return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
+        searchIdString + '&page=' + pageCount + '&per_page=10';
 }
 
 function addPictures(imgUrl, tags, photographer) {
@@ -72,26 +65,31 @@ function deletePictures() {
     });
 }
 
-async function fetchJson(pageCount) {
-    deletePictures();
-    let response = await fetch(CreateAPIstring(pageCount));
-    let data = await response.json()
+function setPageControlVisibility(pageCount) {
+    if (pageCount === 1) {
+        previousPageButton.setAttribute("disabled", "disabled");
+        nextPageButton.removeAttribute("disabled");
+    }
+    else if (pageCount === 2) {
+        previousPageButton.removeAttribute("disabled");
+        nextPageButton.removeAttribute("disabled");
+    }
+    else if (pageCount === 51) {
+        nextPageButton.setAttribute("disabled", "disabled");
+    }
+}
 
-    if (pageCount < 19) {
-        arrayPos = pageCount * 10;
-    }
-    else if (pageCount >= 19 && pageCount < 39) {
-        arrayPos = (pageCount - 19) * 10;
-    }
-    else if (pageCount >= 39 && pageCount < 60) {
-        arrayPos = (pageCount - 39) * 10;
-    }
+async function fetchJson(pageCount) {
+    let response = await fetch(CreateAPIstring(pageCount));
+    let data = await response.json();
+
+    console.log(data);
 
     for (var i = 0; i < 10; i++) {
-        if (data.hits[i + arrayPos] != undefined) {
-            addPictures(data.hits[i + arrayPos].webformatURL, data.hits[i + arrayPos].tags, data.hits[i + arrayPos].user);
+        if (data.hits[i] != undefined) {
+            addPictures(data.hits[i].webformatURL, data.hits[i].tags, data.hits[i].user);
         }
-        else if (data.hits[i + arrayPos] === undefined && i === 9) {
+        else if (data.hits[i] === undefined && i === 9) {
             nextPageButton.setAttribute("disabled", "disabled");
             const endOfResults = document.createElement('p');
             endOfResults.textContent = ('You have reached the end of the results');
@@ -101,23 +99,5 @@ async function fetchJson(pageCount) {
             liElement.append(endOfResults);
             results.append(liElement);
         }
-    }
-}
-
-function setPageControlVisibility(pageCount) {
-    if (pageCount === 0) {
-        previousPageButton.setAttribute("disabled", "disabled");
-        nextPageButton.setAttribute("disabled", "disabled");
-    }
-    else if (pageCount === 1) {
-        previousPageButton.setAttribute("disabled", "disabled");
-        nextPageButton.removeAttribute("disabled");
-    }
-    else if (pageCount > 1 && pageCount < 59) {
-        previousPageButton.removeAttribute("disabled");
-        nextPageButton.removeAttribute("disabled");
-    }
-    else if (pageCount === 59) {
-        nextPageButton.setAttribute("disabled", "disabled");
     }
 }
