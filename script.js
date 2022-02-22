@@ -49,7 +49,7 @@ async function fetchJson(pageCount) {
         }
         else if (data.hits[i] === undefined && i === 9) {
             nextPageButton.setAttribute("disabled", "disabled");
-            const endOfResults = document.createElement('p');
+            const endOfResults = document.createElement('li');
             endOfResults.textContent = ('You have reached the end of the results');
             endOfResults.style.color = "white";
             endOfResults.style.fontSize = "x-large";
