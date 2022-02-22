@@ -17,38 +17,38 @@ searchButton.onclick = event => {
         searchIdString = searchForm.value;
     }
     else {
-        searchIdString = searchForm.value + '+' + chosenColor.value;
+        searchIdString = searchForm.value + '&colors=' + chosenColor.value;
     }
     fetchJson(pageCount);
-    setPageControlVisibility(pageCount+1);
+    setPageControlVisibility(pageCount + 1);
 }
 
 nextPageButton.onclick = event => {
     pageCount++;
     fetchJson(pageCount);
     pageCountDisplay.textContent = pageCount + 1;
-    setPageControlVisibility(pageCount+1);
+    setPageControlVisibility(pageCount + 1);
 }
 
 previousPageButton.onclick = event => {
     pageCount--;
     fetchJson(pageCount);
     pageCountDisplay.textContent = pageCount + 1;
-    setPageControlVisibility(pageCount+1);
+    setPageControlVisibility(pageCount + 1);
 }
 
 function CreateAPIstring(pageCount) {
     if (pageCount < 19) {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        searchIdString + '&page=1&per_page=200';
+        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
+            searchIdString + '&page=1&per_page=200';
     }
     else if (pageCount >= 19 && pageCount < 39) {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        searchIdString + '&page=2&per_page=200';
+        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
+            searchIdString + '&page=2&per_page=200';
     }
     else if (pageCount >= 39 && pageCount < 60) {
-        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' + 
-        searchIdString + '&page=3&per_page=200';
+        return 'https://pixabay.com/api/?key=25628261-88fe3cd1e6d3db0e5352b21b2&q=' +
+            searchIdString + '&page=3&per_page=200';
     }
 }
 
@@ -84,23 +84,23 @@ async function fetchJson(pageCount) {
         arrayPos = (pageCount - 19) * 10;
     }
     else if (pageCount >= 39 && pageCount < 60) {
-        arrayPos = (pageCount - 39) * 10; 
+        arrayPos = (pageCount - 39) * 10;
     }
 
     for (var i = 0; i < 10; i++) {
-        if (data.hits[i+arrayPos] != undefined) {
-            addPictures(data.hits[i+arrayPos].webformatURL, data.hits[i+arrayPos].tags, data.hits[i+arrayPos].user);
+        if (data.hits[i + arrayPos] != undefined) {
+            addPictures(data.hits[i + arrayPos].webformatURL, data.hits[i + arrayPos].tags, data.hits[i + arrayPos].user);
         }
-        else if (data.hits[i+arrayPos] === undefined && i === 9) {
+        else if (data.hits[i + arrayPos] === undefined && i === 9) {
             nextPageButton.setAttribute("disabled", "disabled");
             const endOfResults = document.createElement('p');
             endOfResults.textContent = ('You have reached the end of the results');
-            endOfResults.style.color =  "white";
+            endOfResults.style.color = "white";
             endOfResults.style.fontSize = "x-large";
             const liElement = document.createElement('li');
             liElement.append(endOfResults);
             results.append(liElement);
-        } 
+        }
     }
 }
 
