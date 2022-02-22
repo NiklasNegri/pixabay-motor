@@ -9,13 +9,13 @@ previousPageButton.setAttribute("disabled", "disabled");
 nextPageButton.setAttribute("disabled", "disabled");
 
 searchButton.onclick = event => {
-    pageCount = 1;
     if (chosenColor.value === "") {
         searchIdString = searchForm.value;
     }
     else {
         searchIdString = searchForm.value + '&colors=' + chosenColor.value;
     }
+    pageCount = 1;
     start(pageCount);
 }
 
@@ -53,9 +53,7 @@ async function fetchJson(pageCount) {
             endOfResults.textContent = ('You have reached the end of the results');
             endOfResults.style.color = "white";
             endOfResults.style.fontSize = "x-large";
-            const liElement = document.createElement('li');
-            liElement.append(endOfResults);
-            results.append(liElement);
+            results.append(endOfResults);
         }
     }
 }
