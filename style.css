@@ -12,9 +12,11 @@ body {
 .headline {
     font-size: 60px;
 }
+
 .creators {
     font-size: 20px;
 }
+
 .powered-by-pixabay {
     font-size: 15px;
     color: gray;
@@ -23,8 +25,8 @@ body {
 
 .search-bar {
     display: grid;
-    grid-template: 
-    "a b c" / 3fr 2fr 1fr;
+    grid-template:
+        "a b c"/ 3fr 2fr 1fr;
 
     list-style-type: none;
 
@@ -33,7 +35,7 @@ body {
     width: 600px;
 }
 
-.search-bar input, .search-bar select, .search-bar button{
+.search-bar input, .search-bar select, .search-bar button {
     font-size: 20px;
 }
 
@@ -41,22 +43,22 @@ body {
     .results {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        
+
         margin-left: auto;
         margin-right: auto;
-        
+
         list-style-type: none;
     }
 }
 
-@media (max-width: 1650px ) {
+@media (max-width: 1650px) {
     .results {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        
+
         margin-left: auto;
         margin-right: auto;
-        
+
         list-style-type: none;
     }
 }
@@ -65,10 +67,10 @@ body {
     .results {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        
+
         margin-left: auto;
         margin-right: auto;
-        
+
         list-style-type: none;
     }
 }
@@ -77,7 +79,7 @@ body {
     .results {
         display: grid;
         grid-template-columns: 1fr;
-        
+
         margin-left: auto;
         margin-right: auto;
         list-style-type: none;
@@ -85,13 +87,13 @@ body {
 
     .search-bar {
         display: grid;
-        grid-template: 
-        "a"
-        "b"
-        "c" / 1fr;
-    
+        grid-template:
+            "a"
+            "b"
+            "c"/ 1fr;
+
         list-style-type: none;
-    
+
         margin-left: auto;
         margin-right: auto;
         width: 380px;
@@ -100,32 +102,33 @@ body {
 
 
 @media (max-width: 1650px) {
-    .results img{
+    .results img {
         width: 380px;
         height: 290px;
-    
+
         display: block;
-    
+
         margin-left: auto;
         margin-right: auto;
-        
+
         padding-bottom: 20px;
-    
+
         /* Used to center the results */
         padding-right: 40px;
-        
+
     }
 }
+
 @media (min-width: 1650px) {
-    .results img{
+    .results img {
         width: 380px;
         height: 290px;
-    
+
         display: block;
-    
+
         margin-left: auto;
         margin-right: auto;
-        
+
         padding-bottom: 20px;
     }
 }
@@ -141,7 +144,7 @@ body {
     text-align: center;
 }
 
-.bottom-buttons button{
+.bottom-buttons button {
     font-size: 20px;
 }
 
